@@ -1,6 +1,4 @@
-Sure, here's a more detailed and comprehensive README that includes sections about the app's features, usage instructions, and technical information about the ML models and graphs:
 
-```markdown
 # 📦 WinStep
 
 Welcome to WinStep! Our application is designed to provide comprehensive insights into your inventory management, leveraging advanced machine learning models to optimize your operations.
