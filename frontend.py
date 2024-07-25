@@ -561,7 +561,7 @@ def display_expiry_risk_analysis():
             "days_until_expiry": 14 + np.random.randint(-5, 5),
             "Product_name": grocery_names[i]
         }
-        for i in range(15)
+        for i in range(len(grocery_names))
     ]
 
     # Convert to DataFrame
