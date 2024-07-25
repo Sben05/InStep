@@ -91,6 +91,5 @@ Explore more about inventory management, expiry risk analysis, and data visualiz
 - [Inventory Management Best Practices](https://example.com/resource1)
 - [Expiry Risk Analysis Techniques](https://example.com/resource2)
 - [Data Visualization Tips and Tricks](https://example.com/resource3)
-```
 
-This markdown provides a comprehensive overview of WinStep, its features, and how to use it, as well as details about the machine learning models and technical aspects. Adjust the links and details as needed to fit your project specifics.
+
