@@ -1,4 +1,4 @@
-# 📦 Streamlit App Starter Kit 
+# 📦 WinStep
 ```
 ⬆️ (Replace above with your app's name)
 ```
