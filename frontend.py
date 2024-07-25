@@ -188,13 +188,28 @@ def display_home_page():
 
     # Sample data with real-world perishable products
     data = {
-        "Product Name": ["Cereal", "Dish Soap", "Shampoo", "T-shirt", "Headphones", "Garden Hose", "Board Game", "Car Wax", "Basketball", "Notebook", "Vitamins", "Dog Food"],
-        "Stock": [150, 200, 180, 100, 50, 120, 60, 80, 90, 300, 200, 150],
-        "Sales": [140, 180, 160, 90, 45, 110, 50, 70, 80, 250, 180, 130],
-        "Shelf Life (days)": [365, 730, 730, 1825, 1095, 1095, 1825, 1460, 1460, 1825, 365, 365],
-        "Category": ["Groceries", "Household Items", "Personal Care", "Clothing and Accessories", "Electronics", "Home and Garden", "Toys and Games", "Automotive", "Sporting Goods", "Books and Stationery", "Pharmacy and Health", "Pet Supplies"],
-        "Initial Stock Date": pd.to_datetime(["2023-07-01", "2023-07-03", "2023-07-05", "2023-07-07", "2023-07-10", "2023-07-12", "2023-07-15", "2023-07-17", "2023-07-20", "2023-07-22", "2023-07-25", "2023-07-28"])
+        "Product Name": [
+            "Groceries", "Household Items", "Personal Care", 
+            "Clothing and Accessories", "Electronics", "Home and Garden", 
+            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Books and Stationery", "Pharmacy and Health", "Pet Supplies"
+        ],
+        "Stock": [50, 120, 90, 200, 40, 70, 60, 80, 110, 150, 95, 130],
+        "Sales": [45, 100, 80, 180, 30, 65, 50, 70, 100, 140, 90, 120],
+        "Shelf Life (days)": [180, 365, 730, 730, 1095, 1825, 1095, 365, 365, 1825, 730, 365],
+        "Category": [
+            "Groceries", "Household Items", "Personal Care", 
+            "Clothing and Accessories", "Electronics", "Home and Garden", 
+            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Books and Stationery", "Pharmacy and Health", "Pet Supplies"
+        ],
+        "Initial Stock Date": pd.to_datetime([
+            "2023-07-01", "2023-07-02", "2023-07-03", "2023-07-04", 
+            "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-08", 
+            "2023-07-09", "2023-07-10", "2023-07-11", "2023-07-12"
+        ])
     }
+
 
     df = pd.DataFrame(data)
 
