@@ -553,7 +553,7 @@ def display_expiry_risk_analysis():
 
     # Generate similar data for 15 different grocery items
     np.random.seed(42)
-    grocery_items = [
+    grocery_names = [
         {
             "expiry_date": pd.Timestamp('2024-07-01') + pd.to_timedelta(np.random.randint(0, 100), unit='d'),
             "sales_velocity": 1.935246582 + np.random.normal(0, 0.5),
