@@ -543,17 +543,14 @@ def display_expiry_risk_analysis():
 
     # List of real grocery product names
     grocery_names = [
-        "Groceries", "Household Items", "Personal Care", 
-        "Clothing and Accessories", "Electronics", 
-        "Home and Garden", "Toys and Games", "Automotive", 
-        "Sporting Goods", "Books and Stationery", 
-        "Pharmacy and Health", "Pet Supplies"
+        "Milk", "Bread", "Eggs", "Butter", "Cheese",
+        "Yogurt", "Chicken", "Beef", "Pork", "Fish",
+        "Apples", "Bananas", "Oranges", "Tomatoes", "Potatoes"
     ]
-
 
     # Generate similar data for 15 different grocery items
     np.random.seed(42)
-    grocery_names = [
+    grocery_items = [
         {
             "expiry_date": pd.Timestamp('2024-07-01') + pd.to_timedelta(np.random.randint(0, 100), unit='d'),
             "sales_velocity": 1.935246582 + np.random.normal(0, 0.5),
@@ -561,7 +558,7 @@ def display_expiry_risk_analysis():
             "days_until_expiry": 14 + np.random.randint(-5, 5),
             "Product_name": grocery_names[i]
         }
-        for i in range(len(grocery_names))
+        for i in range(15)
     ]
 
     # Convert to DataFrame
@@ -944,4 +941,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
