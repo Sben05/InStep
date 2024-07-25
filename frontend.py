@@ -1,3 +1,9 @@
+# Main Author: Shreeniket Bendre
+# Northwestern University
+# Infosys InStep
+# Jun 24 2024
+# frontend.py
+
 import streamlit as st
 from PIL import Image
 from backend import upload_image_to_imgbb, format_response, analyze_image
@@ -547,7 +553,13 @@ def display_expiry_risk_analysis():
         "Yogurt", "Chicken", "Beef", "Pork", "Fish",
         "Apples", "Bananas", "Oranges", "Tomatoes", "Potatoes"
     ]
-
+    grocery_names = [
+            "Groceries", "Household Items", "Personal Care", 
+            "Clothing and Accessories", "Electronics", "Home and Garden", 
+            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Books and Stationery", "Pharmacy and Health", "Pet Supplies",
+            "Oranges", "Tomatoes", "Potatoes"
+        ]
     # Generate similar data for 15 different grocery items
     np.random.seed(42)
     grocery_items = [
@@ -880,7 +892,7 @@ def main():
 
     elif page == "Review Data":
         categories = fetch_all_categories(db)
-        category = st.sidebar.selectbox("Select a category", categories, index = 2)
+        category = st.sidebar.selectbox("Select a category", categories, index = 3)
 
         if category:
             st.session_state["category"] = category
@@ -893,7 +905,7 @@ def main():
                 col1, col2, col3 = st.columns(3)
                 for idx, item in enumerate(data):
                     col = [col1, col2, col3][idx % 3]
-                    if col.button(f"{item['Product name']}"):
+                    if col.button(f"{item['Product name']}", key=f"{item['Product name']}_{idx}"):
                         st.session_state["selected_product"] = item
                         st.session_state["page"] = "Product Details"
                     col.image(item["Image URL"], caption=item["Product name"], use_column_width=True, width=300)
