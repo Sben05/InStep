@@ -543,10 +543,13 @@ def display_expiry_risk_analysis():
 
     # List of real grocery product names
     grocery_names = [
-        "Milk", "Bread", "Eggs", "Butter", "Cheese",
-        "Yogurt", "Chicken", "Beef", "Pork", "Fish",
-        "Apples", "Bananas", "Oranges", "Tomatoes", "Potatoes"
+        "Groceries", "Household Items", "Personal Care", 
+        "Clothing and Accessories", "Electronics", 
+        "Home and Garden", "Toys and Games", "Automotive", 
+        "Sporting Goods", "Books and Stationery", 
+        "Pharmacy and Health", "Pet Supplies"
     ]
+
 
     # Generate similar data for 15 different grocery items
     np.random.seed(42)
