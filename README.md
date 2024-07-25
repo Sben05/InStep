@@ -6,7 +6,8 @@ Welcome to WinStep! Our application is designed to provide comprehensive insight
 ## Deliverables
 
 ### 🎥 Video
-Demo Video: [![Open in YouTube](https://img.shields.io/badge/Open%20in-YouTube-red?logo=youtube)](https://youtu.be/zj1QZb2kdzg?si=fTSRA7uHZPTGm4Ls)
+Detailed Video: [![STRONGLY RECCOMEND TO WATCH](https://img.shields.io/badge/Open%20in-YouTube-red?logo=youtube)](https://youtu.be/9tnm4nd6rIk)
+Short Promo Video: [![Open in YouTube](https://img.shields.io/badge/Open%20in-YouTube-red?logo=youtube)](https://youtu.be/zj1QZb2kdzg?si=fTSRA7uHZPTGm4Ls)
 
 ### 📄 Presentation
 - Download PDF: Available in the GitHub repo
