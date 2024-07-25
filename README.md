@@ -1,6 +1,11 @@
 # 📦 WinStep
 ```
 Welcome!
+
+Please note that the streamlit web deployment does not render images due to security issues, which makes the Review Data screen unable to display pictures.
+
+If you would like to run with pictures, please visit this Google colab repository and run all cells. Wait for everything to run (may take a bit due to dependencies), then run the ngrok link. This will let you see images. 
+
 ```
 
 
