@@ -14,4 +14,5 @@ streamlit-cropper
 stqdm
 streamlit-custom-notification-box
 firebase-admin
-
+pandas
+streamlit-option-menu
