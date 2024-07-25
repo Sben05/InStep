@@ -188,13 +188,14 @@ def display_home_page():
 
     # Sample data with real-world perishable products
     data = {
-        "Product Name": ["Apples", "Bananas", "Carrots", "Milk", "Bread", "Eggs", "Chicken", "Yogurt", "Lettuce", "Oranges"],
-        "Stock": [200, 180, 150, 80, 100, 120, 60, 90, 140, 160],
-        "Sales": [180, 150, 120, 75, 85, 110, 50, 85, 130, 140],
-        "Shelf Life (days)": [30, 7, 20, 5, 3, 10, 2, 14, 7, 14],
-        "Category": ["Fruits", "Fruits", "Vegetables", "Dairy", "Bakery", "Dairy", "Meat", "Dairy", "Vegetables", "Fruits"],
-        "Initial Stock Date": pd.to_datetime(["2023-07-01", "2023-07-03", "2023-07-05", "2023-07-07", "2023-07-10", "2023-07-12", "2023-07-15", "2023-07-17", "2023-07-20", "2023-07-22"])
+        "Product Name": ["Cereal", "Dish Soap", "Shampoo", "T-shirt", "Headphones", "Garden Hose", "Board Game", "Car Wax", "Basketball", "Notebook", "Vitamins", "Dog Food"],
+        "Stock": [150, 200, 180, 100, 50, 120, 60, 80, 90, 300, 200, 150],
+        "Sales": [140, 180, 160, 90, 45, 110, 50, 70, 80, 250, 180, 130],
+        "Shelf Life (days)": [365, 730, 730, 1825, 1095, 1095, 1825, 1460, 1460, 1825, 365, 365],
+        "Category": ["Groceries", "Household Items", "Personal Care", "Clothing and Accessories", "Electronics", "Home and Garden", "Toys and Games", "Automotive", "Sporting Goods", "Books and Stationery", "Pharmacy and Health", "Pet Supplies"],
+        "Initial Stock Date": pd.to_datetime(["2023-07-01", "2023-07-03", "2023-07-05", "2023-07-07", "2023-07-10", "2023-07-12", "2023-07-15", "2023-07-17", "2023-07-20", "2023-07-22", "2023-07-25", "2023-07-28"])
     }
+
     df = pd.DataFrame(data)
 
     # Welcome Section
