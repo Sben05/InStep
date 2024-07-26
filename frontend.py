@@ -276,7 +276,7 @@ def display_home_page():
             font-weight: bold;
         }
         .metric-value {
-            color: #f57c00;
+            color: #4CAF50;
             font-size: 50px;
             font-weight: bold;
         }
