@@ -1000,7 +1000,7 @@ def display_notification_manager():
         email_preview_body = f"""
         <div class="email-preview">
             <h4>Email Preview:</h4>
-            <p><strong>Subject:</strong> Urgent: Top Product Category at Risk of Expiry</p>
+            <p><strong>Subject:</strong> WinStep Inventory Management: Product at Risk of Expiry</p>
             <p><strong>Body:</strong></p>
             <p>Dear {user_name if user_name != "" else "<your name will appear here>"},</p>
             <p>This is an automated notification to inform you that the top product category at risk of expiry is:</p>
