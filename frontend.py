@@ -27,6 +27,21 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import time
 import altair as alt
+from datetime import datetime, timedelta
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import sendgrid
+from sendgrid.helpers.mail import Mail, Email, To, Content
+import streamlit as st
+import os
+import streamlit as st
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email_validator import validate_email, EmailNotValidError
+from email import encoders
+from io import BytesIO
 
 st.set_page_config(page_title="Inventory Management Dashboard", layout="wide")
 
@@ -195,23 +210,23 @@ def display_home_page():
     # Sample data with real-world perishable products
     data = {
         "Product Name": [
-            "Groceries", "Household Items", "Personal Care", 
-            "Clothing and Accessories", "Electronics", "Home and Garden", 
-            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Groceries", "Household Items", "Personal Care",
+            "Clothing and Accessories", "Electronics", "Home and Garden",
+            "Toys and Games", "Automotive", "Sporting Goods",
             "Books and Stationery", "Pharmacy and Health", "Pet Supplies"
         ],
         "Stock": [50, 120, 90, 200, 40, 70, 60, 80, 110, 150, 95, 130],
         "Sales": [45, 100, 80, 180, 30, 65, 50, 70, 100, 140, 90, 120],
         "Shelf Life (days)": [180, 365, 730, 730, 1095, 1825, 1095, 365, 365, 1825, 730, 365],
         "Category": [
-            "Groceries", "Household Items", "Personal Care", 
-            "Clothing and Accessories", "Electronics", "Home and Garden", 
-            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Groceries", "Household Items", "Personal Care",
+            "Clothing and Accessories", "Electronics", "Home and Garden",
+            "Toys and Games", "Automotive", "Sporting Goods",
             "Books and Stationery", "Pharmacy and Health", "Pet Supplies"
         ],
         "Initial Stock Date": pd.to_datetime([
-            "2023-07-01", "2023-07-02", "2023-07-03", "2023-07-04", 
-            "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-08", 
+            "2023-07-01", "2023-07-02", "2023-07-03", "2023-07-04",
+            "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-08",
             "2023-07-09", "2023-07-10", "2023-07-11", "2023-07-12"
         ])
     }
@@ -554,9 +569,9 @@ def display_expiry_risk_analysis():
         "Apples", "Bananas", "Oranges", "Tomatoes", "Potatoes"
     ]
     grocery_names = [
-            "Groceries", "Household Items", "Personal Care", 
-            "Clothing and Accessories", "Electronics", "Home and Garden", 
-            "Toys and Games", "Automotive", "Sporting Goods", 
+            "Groceries", "Household Items", "Personal Care",
+            "Clothing and Accessories", "Electronics", "Home and Garden",
+            "Toys and Games", "Automotive", "Sporting Goods",
             "Books and Stationery", "Pharmacy and Health", "Pet Supplies",
             "Oranges", "Tomatoes", "Potatoes"
         ]
@@ -796,6 +811,211 @@ def display_expiry_risk_analysis():
         """, unsafe_allow_html=True
     )
 
+##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+def display_notification_manager():
+    # Main page content with new styling
+    st.markdown("""
+    <style>
+        body {
+            background-color: #1A1A1D; /* Dark background color */
+            color: #FFD1DC; /* Light pink text color */
+            font-family: 'Courier New', monospace; /* Monospace font */
+        }
+        .header {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FF6F9D; /* Light pinkish color */
+            text-align: center;
+            margin: 30px auto;
+            width: 80%;
+            background-color: #2E2E3A; /* Darker background for header */
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .description-box {
+            background-color: #2E2E3A; /* Darker secondary background color */
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #FFF1FA; /* Light pink text color */
+            font-weight: bold;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-in-out;
+        }
+        .description-box span {
+            color: #FF6F9D; /* Light pinkish color for key points */
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .input-container input, .input-container button {
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #FFD1DC; /* Light pink border */
+            background-color: #2E2E3A; /* Darker secondary background color */
+            color: #FFD1DC; /* Light pink text color */
+        }
+        .input-container input {
+            width: 80%;
+            max-width: 450px;
+        }
+        .input-container button {
+            background-color: #FF6F9D; /* Light pinkish color */
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .input-container button:hover {
+            background-color: #FF4C77; /* Darker pinkish color */
+        }
+        .notification-success {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #4CAF50; /* Green background for success */
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            text-align: center;
+        }
+        .email-preview {
+            margin-top: 30px;
+            padding: 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #2E2E3A; /* Darker secondary background color */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-in-out;
+        }
+        .email-preview h4 {
+            margin-bottom: 15px;
+            color: #FF6F9D; /* Light pinkish color */
+            font-weight: bold;
+        }
+        .email-preview p {
+            margin-bottom: 15px;
+            color: #FFD1DC; /* Light pink text color */
+        }
+        .email-preview h3 {
+            margin-bottom: 15px;
+            color: #FF6F9D; /* Light pinkish color */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+    <div class="header">Notification Manager</div>
+    <div class="description-box">
+        <p>Fill out the form below to send a notification email about the top product category at risk of expiry.</p>
+        <p>Ensure that you enter a <span>valid recipient email address</span> and provide your <span>name</span> to personalize the message.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Input fields for notification
+    with st.form(key='notification_form'):
+        recipient_email = st.text_input("Enter Recipient Email:")
+        user_name = ""
+        user_name = st.text_input("Enter Your Name:", "")
+        send_button = st.form_submit_button("Send Notification")
+
+        # Display progress bar and success message
+        if send_button:
+            if recipient_email and user_name:
+                # Validate email
+                try:
+                    validate_email(recipient_email)
+                    
+                    # Display progress bar
+                    progress_bar = st.progress(0)
+                    
+                    # Simulate email sending process
+                    for i in range(100):
+                        time.sleep(0.03)  # Simulating email sending delay
+                        progress_bar.progress(i + 1)
+                    
+                    # Email configuration
+                    smtp_server = 'smtp.gmail.com'
+                    smtp_port = 587
+                    sender_email = 'winstep.noti@gmail.com'
+                    sender_password = 'fxlq eipo zdmw tleo'  # Use your generated App Password
+
+                    # Email content
+                    subject = 'Urgent: Top Product Category at Risk of Expiry'
+                    body = f"""
+                    <html>
+                    <body>
+                        <p>Dear {user_name},</p>
+                        <p>This is an automated notification to inform you that the top product category at risk of expiry is:</p>
+                        <h3>Groceries: Cookies</h3>
+                        <p>Days until expiry: <strong>5 days</strong></p>
+                        <p>Please take necessary actions to address this issue.</p>
+                        <p>Best,<br>Your WinStep Inventory Management Team</p>
+                        <img src="https://i.ibb.co/tqf7Qg9/Infosys-logo.png" alt="WinStep Logo" style="width: 100px; height: auto;"/>
+                    </body>
+                    </html>
+                    """
+
+                    # Create the email
+                    msg = MIMEMultipart('alternative')
+                    msg['Subject'] = subject
+                    msg['From'] = sender_email
+                    msg['To'] = recipient_email
+                    msg.attach(MIMEText(body, 'html'))
+
+                    # Send the email
+                    with smtplib.SMTP(smtp_server, smtp_port) as server:
+                        server.starttls()
+                        server.login(sender_email, sender_password)
+                        server.sendmail(sender_email, recipient_email, msg.as_string())
+                    
+                    # Hide progress bar and display success message
+                    progress_bar.empty()
+                    st.markdown('<div class="notification-success">Notification email sent successfully.</div>', unsafe_allow_html=True)
+
+                except EmailNotValidError:
+                    st.error("Invalid email address. Please check and try again.")
+                except Exception as e:
+                    st.error(f"Failed to send email: {e}")
+            else:
+                st.error("Please enter both a recipient email address and your name.")
+        
+        # Generate email preview
+        email_preview_body = f"""
+        <div class="email-preview">
+            <h4>Email Preview:</h4>
+            <p><strong>Subject:</strong> Urgent: Top Product Category at Risk of Expiry</p>
+            <p><strong>Body:</strong></p>
+            <p>Dear {user_name if user_name != "" else "<your name will appear here>"},</p>
+            <p>This is an automated notification to inform you that the top product category at risk of expiry is:</p>
+            <h3>Groceries: Cookies</h3>
+            <p>Days until expiry: <strong>5 days</strong></p>
+            <p>Please take necessary actions to address this issue.</p>
+            <p>Best,<br>Your WinStep Inventory Management Team</p>
+        </div>
+        """
+
+        # Display email preview
+        st.markdown(email_preview_body, unsafe_allow_html=True)
+
+# Sample call to the function
+# send_email_notification('Electronics', 'recipient@example.com')
 
 ##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 ##################################################################################################################################################################################################################################################################################################################################################################################################################################################################
@@ -805,8 +1025,6 @@ def display_expiry_risk_analysis():
 # Main function to run the Streamlit app
 def main():
     #st.title("Shelf-Life Analysis Application")
-
-
     key_path_dict = {
         "type": "service_account",
         "project_id": "winstep-16ca4",
@@ -872,13 +1090,11 @@ def main():
       # Compute the current page selection
       page = option_menu(
           "Navigation",
-          ["Dashboard", 'Capture & Analyze', 'Review Data', 'Risk Analysis', '---'],
-          icons=['house', 'camera', 'code-slash', 'graph-up-arrow'],
+          ["Dashboard", 'Capture & Analyze', 'Review Data', 'Risk Analysis', 'Notification Manager', '---'],
+          icons=['house', 'camera', 'code-slash', 'graph-up-arrow', 'envelope'],
           menu_icon="cast",
           default_index=0
       )
-
-
 
 
 
@@ -950,6 +1166,8 @@ def main():
                         collection_ref.add(general_info)
     elif page == "Risk Analysis":
         display_expiry_risk_analysis()
+    elif page == "Notification Manager":
+        display_notification_manager()
 
 if __name__ == "__main__":
     main()
