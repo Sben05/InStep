@@ -253,7 +253,7 @@ def display_home_page():
         }
         </style>
         <div class="welcome-section">
-            <div class="welcome-title">Hello, Shreeni</div>
+            <div class="welcome-title">Hello, Mr. Murthy</div>
             <div class="welcome-subtitle">Welcome to the Inventory Management Dashboard</div>
         </div>
         """, unsafe_allow_html=True
