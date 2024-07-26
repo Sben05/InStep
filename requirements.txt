@@ -18,3 +18,7 @@ pandas
 streamlit-option-menu
 joblib
 scikit-learn
+email-validator
+altair
+sendgrid
+numpy
