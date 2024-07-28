@@ -43,6 +43,7 @@ from email_validator import validate_email, EmailNotValidError
 from email import encoders
 from io import BytesIO
 
+
 st.set_page_config(page_title="Inventory Management Dashboard", layout="wide")
 
 # Function to upload and display image
@@ -941,15 +942,15 @@ def display_notification_manager():
                 # Validate email
                 try:
                     validate_email(recipient_email)
-                    
+
                     # Display progress bar
                     progress_bar = st.progress(0)
-                    
+
                     # Simulate email sending process
                     for i in range(100):
                         time.sleep(0.03)  # Simulating email sending delay
                         progress_bar.progress(i + 1)
-                    
+
                     # Email configuration
                     smtp_server = 'smtp.gmail.com'
                     smtp_port = 587
@@ -984,7 +985,7 @@ def display_notification_manager():
                         server.starttls()
                         server.login(sender_email, sender_password)
                         server.sendmail(sender_email, recipient_email, msg.as_string())
-                    
+
                     # Hide progress bar and display success message
                     progress_bar.empty()
                     st.markdown('<div class="notification-success">Notification email sent successfully.</div>', unsafe_allow_html=True)
@@ -995,7 +996,7 @@ def display_notification_manager():
                     st.error(f"Failed to send email: {e}")
             else:
                 st.error("Please enter both a recipient email address and your name.")
-        
+
         # Generate email preview
         email_preview_body = f"""
         <div class="email-preview">
@@ -1171,3 +1172,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
