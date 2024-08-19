@@ -968,7 +968,7 @@ def display_notification_manager():
                         <p>Days until expiry: <strong>5 days</strong></p>
                         <p>Please take necessary actions to address this issue.</p>
                         <p>Best,<br>Your WinStep Inventory Management Team</p>
-                        <img src="https://i.ibb.co/tqf7Qg9/Infosys-logo.png" alt="WinStep Logo" style="width: 100px; height: auto;"/>
+                        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQH3swEMhoL0Lg/company-logo_200_200/company-logo_200_200/0/1723750035997/stoq_team_logo?e=1732147200&v=beta&t=KTzjFhb57bSsMqfQ-O4-AZGvZBXaFlS-MgQ92GzoVjk" alt="WinStep Logo" style="width: 100px; height: auto;"/>
                     </body>
                     </html>
                     """
