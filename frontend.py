@@ -1101,7 +1101,7 @@ def main():
 
 
     #st.logo("https://i.ibb.co/FszJXsx/Infosys-logo-2-optimized.png")
-    st.image("https://i.ibb.co/tqf7Qg9/Infosys-logo.png", use_column_width=True)
+    st.image("https://media.licdn.com/dms/image/v2/D4E0BAQH3swEMhoL0Lg/company-logo_200_200/company-logo_200_200/0/1723750035997/stoq_team_logo?e=1732147200&v=beta&t=KTzjFhb57bSsMqfQ-O4-AZGvZBXaFlS-MgQ92GzoVjk", use_column_width=True)
 
 
     if page == "Dashboard":
